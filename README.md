@@ -31,10 +31,14 @@
 確保替換過程順利無誤，讓你的資料遷移變得輕鬆愉快！🌟  
 
 ## 選擇 Python 的執行版本
-按下 `ctrl + shift + p`
+按下 `ctrl + shift + p`  
 ![python-01](./images/python-01.png)
 
+---
+
 ![python-02](./images/python-02.png)
+
+---
 
 ## 掃描目錄處理所有 CSV：
 ```bash
