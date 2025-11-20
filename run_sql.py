@@ -50,7 +50,7 @@ try:
 except Exception:
     raise RuntimeError("Please install PyMySQL first: pip install pymysql")
 
-print(f"host: {host}:{port}, 使用者: {user}, 密碼長度: {len(password)} (不會顯示密碼內容)")
+print(f"host: {host}:{port}, db: {db}, 使用者: {user}, 密碼長度: {len(password)} (不會顯示密碼內容)")
 
 try:
     conn = pymysql.connect(host=host, port=port, user=user, password=password)

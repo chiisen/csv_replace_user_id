@@ -110,3 +110,13 @@ python run_sql.py
 ## 如何取得原始資料
 [統計要匯出的所有統計資料](./docs/get_data.md)  
 [統計要匯出的統計資料筆數](./docs/get_data_count.md)  
+
+## 連線失敗紀錄
+.env 的 DB_HOST=192.168.1.234 情境，  
+連線報錯  
+```bash
+host: 192.168.1.234:3306, 連線 MySQL 失敗: (1130, "Host '192.168.1.45' is not allowed to connect to this MySQL server")
+```
+改用 DB_HOST=127.0.0.1 的設定，並開啟 `ssh -L 3306:192.168.1.234:3306 root@234` 連線後，  
+才能正常執行 `run_sql.py` ，原因待查。  
+
