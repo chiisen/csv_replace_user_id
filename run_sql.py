@@ -3,7 +3,27 @@ import sys
 import glob
 import re
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timedelta, date as datetime_date
+
+
+def get_custom_week_number(date):
+    # 找到該年的第一個星期日
+    first_day_of_year = datetime_date(date.year, 1, 1)
+    # 計算第一個星期日是哪一天
+    days_to_first_sunday = (6 - first_day_of_year.weekday()) % 7  # weekday: 0=Mon, 6=Sun
+    first_sunday = first_day_of_year + timedelta(days=days_to_first_sunday)
+    
+    # 計算從第一個星期日到當前日期的天數
+    days_since_first_sunday = (date - first_sunday).days
+    
+    # 週數 = 天數 // 7 + 1
+    if days_since_first_sunday >= 0:
+        week_num = (days_since_first_sunday // 7) + 1
+    else:
+        # 如果日期在第一個星期日前，使用上一年的週數（這裡簡化，實際可能需要調整）
+        week_num = 52  # 或計算上一年
+    
+    return week_num
 
 """使用環境變數 (Environment Variables) 連線至 MySQL 並顯示 MySQL 版本。
 
@@ -91,10 +111,16 @@ try:
 
                 # 替換代碼 (Token) ##USER_ID##
                 sql_text = raw_sql.replace("##USER_ID##", user_id)
-                # 算出今年的年份
-                
+                # 算出今年的年份                
                 current_year = datetime.now().year
                 sql_text = sql_text.replace("##YEAR##", str(current_year))
+                # 計算出今天的年月日，格式為 YYYY-MM-DD
+                today_str = datetime.now().strftime("%Y-%m-%d")
+                # 計算出今天第幾周
+                now = datetime.now()
+                current_week = get_custom_week_number(now.date())
+
+                print(f"  計算出 ##YEAR## => {current_year} , ##TODAY## => {today_str} , ##WEEK## => {current_week} ")
 
                 # 以分號 (Semicolon) 分割語句 (Statements)。這是一個簡單的方法，
                 # 對於字串常值 (String Literals) 中包含分號的情況可能會失敗，但對一般 SQL 檔案已足夠。
@@ -105,7 +131,7 @@ try:
                         # 若存在 DELIMITER 行則略過
                         if re.match(r"^DELIMITER\b", stmt, flags=re.IGNORECASE):
                             continue
-                        cursor.execute(stmt)
+                        #cursor.execute(stmt)
                     except pymysql.MySQLError as e:
                         print(f"    在檔案 ({idx}/{len(sql_files)}) {sql_file} 的語句 (Statement) #{i} 發生錯誤: {e}")
                         raise

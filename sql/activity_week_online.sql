@@ -176,8 +176,8 @@ FROM
 WHERE
     OLD.user_id IN (
         ##USER_ID##)
-        AND OLD.year_num= ##YEAR##
-        AND OLD.week_num = 44 
+        AND OLD.year_num = ##YEAR##
+        AND OLD.week_num >= ##WEEK## 
         ON DUPLICATE KEY
         UPDATE
             total_activities = IFNULL(activity_week_online.total_activities, 0) +

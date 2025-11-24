@@ -30,5 +30,5 @@ FROM
 WHERE
     old.user_id IN (
         ##USER_ID##)
-        AND old.year_num= ##YEAR##
+        AND old.year_num = ##YEAR##
         AND old.month_num >= 11;

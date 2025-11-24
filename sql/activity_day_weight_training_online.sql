@@ -32,5 +32,5 @@ FROM
 WHERE
     old.user_id IN (
         ##USER_ID##)
-        AND old.year_num= ##YEAR##
-        AND old.week_num >= 44;
+        AND old.year_num = ##YEAR##
+        AND old.week_num >= ##WEEK##;

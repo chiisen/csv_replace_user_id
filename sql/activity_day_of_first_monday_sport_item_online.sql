@@ -179,4 +179,4 @@ WHERE
     `activity_day_of_first_monday`.`user_id` IN (
         ##USER_ID##)
         AND `activity_day_of_first_monday`.`year_num`= ##YEAR##
-        AND `activity_day_of_first_monday`.`start_time` >= '2025-11-14T00:00:00.000+08:00';
+        AND `activity_day_of_first_monday`.`start_time` >= '##TODAY##T00:00:00.000+08:00';

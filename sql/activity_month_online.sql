@@ -176,7 +176,7 @@ FROM
 WHERE
     OLD.user_id IN (
         ##USER_ID##)
-        AND OLD.year_num= ##YEAR##
+        AND OLD.year_num = ##YEAR##
         AND OLD.month_num >= 11
         ON DUPLICATE KEY
         UPDATE

@@ -179,7 +179,7 @@ WHERE
     OLD.user_id IN (
         ##USER_ID##)
         AND OLD.year_num = ##YEAR##
-        AND OLD.start_time >= '2025-11-14T00:00:00.000+08:00'
+        AND OLD.start_time >= '##TODAY##T00:00:00.000+08:00'
         ON DUPLICATE KEY
         UPDATE
             total_activities = IFNULL(activity_day_online.total_activities, 0) +

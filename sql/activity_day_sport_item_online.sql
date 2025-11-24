@@ -178,5 +178,5 @@ FROM
 WHERE
     OLD.user_id IN (
         ##USER_ID##)
-        AND OLD.year_num= ##YEAR##
-        AND OLD.start_time >= '2025-11-14T00:00:00.000+08:00';
+        AND OLD.year_num = ##YEAR##
+        AND OLD.start_time >= '##TODAY##T00:00:00.000+08:00';
