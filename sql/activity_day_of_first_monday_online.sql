@@ -178,7 +178,9 @@ FROM
 WHERE
     old.user_id IN (
         ##USER_ID##)
-        AND old.year_num >= 2024 ON DUPLICATE KEY
+        AND old.year_num = 2025 
+        AND old.start_time >= '2025-11-14T00:00:00.000+08:00'
+        ON DUPLICATE KEY
         UPDATE
             total_activities = IFNULL(
                 activity_day_of_first_monday_online.total_activities,

@@ -176,7 +176,9 @@ FROM
 WHERE
     OLD.user_id IN (
         ##USER_ID##)
-        AND OLD.year_num >= 2024 ON DUPLICATE KEY
+        AND OLD.year_num = 2025
+        AND OLD.month_num >= 11
+        ON DUPLICATE KEY
         UPDATE
             total_activities = IFNULL(activity_month_online.total_activities, 0) +
         VALUES

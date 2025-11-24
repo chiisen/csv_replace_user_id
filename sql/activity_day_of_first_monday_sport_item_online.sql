@@ -178,4 +178,5 @@ FROM
 WHERE
     `activity_day_of_first_monday`.`user_id` IN (
         ##USER_ID##)
-        AND `activity_day_of_first_monday`.`year_num` >= 2024;
+        AND `activity_day_of_first_monday`.`year_num` = 2025
+        AND `activity_day_of_first_monday`.`start_time` >= '2025-11-14T00:00:00.000+08:00';

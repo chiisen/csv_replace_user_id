@@ -30,4 +30,5 @@ FROM
 WHERE
     OLD.user_id IN (
         ##USER_ID##)
-        AND OLD.year_num >= 2024;
+        AND OLD.year_num = 2025
+        AND OLD.week_num >= 44;
